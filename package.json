@@ -3,9 +3,13 @@
   "version": "0.0.1",
   "description": "Melodi - Beat Maker is a social rhythmic beat creator",
   "productName": "Melodi - Beat Maker",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "express": "^4.18.2",
     "express-ws": "^5.0.2",
+    "figlet": "^1.5.2",
     "multiparty": "^4.2.3"
   }
 }
