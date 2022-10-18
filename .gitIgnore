@@ -1,0 +1,6 @@
+node_modules
+
+# Environment variables, for when we use private keys
+.env
+.env.development
+.env.production
