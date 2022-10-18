@@ -1,5 +1,8 @@
 # Melodi
 Melodi - Beat Maker is a social rhythmic beat creator.
+Made By: David, Ben, and Ethan
+
+Final Project for Advanced Internet Programming at the University of Winnipeg
 
 | Command | Description |
 | --- | --- |
@@ -56,7 +59,7 @@ git commit -m "your message"
 ```
 
 Now you are ready to push to the git repository!! 
-Make sure to push to the same branch you did git checkout -b <branch name> to
+Make sure to push to the same branch you did ```git checkout -b <branch name>``` to
 ```
 git push -u origin <branch name>
 ```
