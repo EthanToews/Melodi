@@ -17,9 +17,9 @@ Final Project for Advanced Internet Programming at the University of Winnipeg
 | git pull origin <branch> | Pull code from a branch to your local branch, !!This can overwite your changes!! |
 
 # Setup
-First you will want to clone your the most upto date branch (ie the "main" branch):
+First you will want to clone the development branch:
 ```
-git clone -b main https://github.com/EthanToews/Melodi.git
+git clone -b dev https://github.com/EthanToews/Melodi.git
 ```
 
 Next you will want to install your dependencies:
@@ -85,3 +85,5 @@ To see the branch you are currently on
 ```
 git branch
 ```
+
+Lastly you can now go into git, find your repositiory you just pushed and create a pull request to the dev branch. Make sure there are no merge conflicts then merge the pull request :)
