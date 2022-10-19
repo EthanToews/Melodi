@@ -37,9 +37,13 @@ node app.js
 ```
 
 # Before Making Changes
-Just a rule of thumb is to checkout to new local branch before working
+Just a rule of thumb is to checkout to new local branch before working 
+
+(Jira will generate this code for you, in Jira open task then on left side click "Create Branch" and copy the text)
 ```
 git checkout -b <branch name>
+
+Example: git checkout -b MEL-1-setting-up-project
 ```
 
 # After Making Changes
@@ -57,11 +61,24 @@ Now you can add a commit message to wrap up all your staged files with:
 ```
 git commit -m "your message"
 ```
+When committing code please use ```Semantic Commit Messages``` all lowercase
+in the format: ```<type>(<scope>): <subject>```
+- ```feat```: (new feature for the user, not a new feature for build script)
+- ```fix```: (bug fix for the user, not a fix to a build script)
+- ```docs```: (changes to the documentation)
+- ```style```: (formatting, missing semi colons, etc; no production code change)
+- ```refactor```: (refactoring production code, eg. renaming a variable)
+- ```test```: (adding missing tests, refactoring tests; no production code change)
+- ```chore```: (updating grunt tasks etc; no production code change)
+
+Example: ```git commit -m "feat(home page): added the following button"```
 
 Now you are ready to push to the git repository!! 
 Make sure to push to the same branch you did ```git checkout -b <branch name>``` to
 ```
 git push -u origin <branch name>
+
+Example: git push -u origin MEL-1-setting-up-project
 ```
 
 To see the branch you are currently on
