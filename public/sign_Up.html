@@ -15,7 +15,7 @@
   </head>
   <body> 
     
-        <form class="p-3 card w-25 my-auto mx-auto align-items-center">
+        <form action="/signup" method="post" class="p-3 card w-25 my-auto mx-auto align-items-center">
             <h1 class="display-6">Looking to join</h1>
             <h1 class="display-4">Melodi</h1>
             <p>Please sign up</p>
@@ -23,18 +23,14 @@
                 <div class="row"></div>
                 <div class="row">
                     <label for="usernameInput">Username:</label>
-                <input type="text" id="usernameInput">
+                <input type="text" name="username" id="usernameInput">
                 </div>
                 <div class="row">
                     <label for="passwordInput">Enter a password:</label>
-                    <input type="password" name="" id="passwordInput">
-                </div>
-                <div class="row">
-                    <label for="confirmPasswordInput">Re-enter Password:</label>
-                    <input type="password" name="" id="confirmPasswordInput">
+                    <input type="password" name="password" id="passwordInput">
                 </div>
             </div>
-            <button class="btn btn-primary" type="button">Log In</button>
+            <button class="btn btn-primary" type="submit">Sign Up!</button>
        
         </form>
 
