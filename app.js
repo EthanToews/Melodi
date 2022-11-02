@@ -9,6 +9,7 @@ const mongodb = require('mongodb')
 const nunjucks = require('nunjucks')
 const express = require('express')
 const expressWS = require('express-ws')
+const cookieParser = require('cookie-parser');
 // For some fun ASCII in the terminal
 const figlet = require('figlet')
 
@@ -47,6 +48,60 @@ const client = new mongodb.MongoClient(uri)
 
 app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
+app.use( express.json() );
+app.use(cookieParser("My secret"));
+
+app.route("/signup")
+    .get((req, res) => {
+        res.sendFile("sign_Up.html", {root: __dirname + "/public"});
+    })
+    .post((req, res) => {
+        const username = req.body.username.toLowerCase();
+        const password = req.body.password;
+        
+        const insertUsername = async function() {
+            const insert = await client.connect();
+            const collection =  insert.db("melodi").collection("users");
+            const insertUser = await collection.insertOne( {username: username, password: password });
+            if(insertUser['acknowledged']) {
+                res.cookie("UserCookie", req.body.username);
+                res.redirect("/login");
+            } else {
+                res.status(500);
+                res.end();
+            }
+        }
+        insertUsername();          
+    })
+// Find a way to connect to a Database
+app.route("/login")
+    .get((req, res) => {
+        res.sendFile("login.html", {root: __dirname + "/public"});
+    })
+    .post((req, res) => {
+        const username = req.body.username.toLowerCase();
+        
+            const findUsername = async function() {
+            const find = await client.connect();
+            const collection =  find.db("melodi").collection("users");
+            const findUser = await collection.findOne( { username: username });
+            console.log(findUser);
+            if(findUser) {
+                res.cookie("UserCookie", username);
+                res.redirect("/");
+            } else {
+                const response = {response: "Username not found please try again."};
+                console.log(response);
+                res.json(response);
+            }
+        }
+        findUsername();
+    });
+
+app.get("/logout", (req, res) => {
+    res.clearCookie("UserCookie");
+    res.redirect("/login");
+});
 
 app.get('/end-point', (req, res) => {
   console.log('Hello World')
