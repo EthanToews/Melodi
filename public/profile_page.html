@@ -16,8 +16,9 @@
             <div class="menu">
                 <div class="logo"><strong>Melodi</strong></div>
                 <div class="links">
-                    <div class="compose">Compose</div>
-                    <div class="logOut">Log Out</div>
+                    <a href="/profile_page" class="compose">Profile</a>
+                    <a href="/beat-maker" class="compose">Compose</a>
+                    <a href="/logout" class="logOut">Log Out</a>
                 </div>
             </div>
         </div>
@@ -30,5 +31,18 @@
             <!--Implement a list of user's mixes in page?-->
           
         </div>
+        <script>
+            const params = new URLSearchParams(window.location.search)
+            if(params.has('username')){
+                document.getElementById('user').innerText = params.get('username')
+                localStorage.setItem('username', params.get('username'))
+            }else{
+                const username = localStorage.getItem('username')
+                if(username)
+                    document.getElementById('user').innerText = username
+                else
+                    document.getElementById('user').innerText = "(username)"
+            }
+        </script>
     </body>
 </html>

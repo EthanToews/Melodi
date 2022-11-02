@@ -17,6 +17,12 @@
     justify-content: flex-end;
 }
 
+.links a {
+    text-decoration: none;
+    color: white;
+    margin-right: 25px;
+}
+
 .logOut {
     margin-left: 40px;
 }
