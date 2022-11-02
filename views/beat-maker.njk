@@ -1,0 +1,23 @@
+{% extends "layouts/beatLayout.njk" %}
+{% import "macro/rowVar.njk" as reactivity %}
+
+{% block mainbody %}
+  <div style="display: table; border-spacing: 10px;">
+    <div style="display: table-cell;">
+      {% for row in gridValues[0] %}
+        <div style="display: table; border-spacing: 2px;">
+            {{ reactivity.musicRow(row.name) }}
+        </div>
+      {% endfor %}
+    </div>
+    <div style="display: table-cell;">
+      {% for row in gridValues %}
+        <div style="display: table; border-spacing: 2px; background-color: #050b14;">
+          {% for entry in row %}
+            {{ reactivity.entrySelect(entry.name, entry.value) }}
+          {% endfor %}  
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
