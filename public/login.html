@@ -63,9 +63,13 @@
                 body: JSON.stringify(data)
             })
             .then( response => response.json())
-            .then( data => errorMessage.innerHTML = data.response )
-            .catch( err => location.replace("/"))
-    
+            .then( data => {
+                if(data.status === 200)
+                    window.location.href = `http://localhost:8080/profile_page?username=${data.username}`; 
+                else
+                    errorMessage.innerHTML = data.response
+            })
+            .catch( err => console.log( err))
         }
         
 
