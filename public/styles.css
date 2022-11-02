@@ -1,0 +1,33 @@
+.menuContainer {
+    color: #fff;
+    background-color: black;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.menu {
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logOut {
+    margin-left: 40px;
+}
+
+.main {
+    display: flex;
+    margin-left: 60px;
+    margin-top: 40px;
+    flex-direction: column;
+}
+
+p {
+    margin: 20px 20px 20px 0px;
+}
