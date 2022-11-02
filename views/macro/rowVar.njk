@@ -1,0 +1,39 @@
+{% macro musicRow(name) %}
+  <span 
+    class="{{ name }}"
+    style="display: table-cell; width: 60px; height: 60px; border-radius: 5px;"
+  >
+    sound: {{ name.split(0,1)[0][1] }}
+  </span>
+{% endmacro %}
+
+
+{% macro entrySelect(name, value) %}
+  <div
+    class="beat"
+    data-value="{{ value }}"
+    style="color: white; display: table-cell; width: 60px; height: 60px; border-radius: 5px;"
+    name="{{ name }}" id="{{ name }}_setter"
+    onmouseover='mouseover(this)'
+    onmouseout='mouseout(this)'
+    onclick='toggle(this)'
+  >
+    {{name}}
+  </div>
+  <script>
+    document.getElementById("{{ name }}_setter").style.backgroundColor = {{ value }} ? '#2159b5' : '#123163';
+    function toggle(x) {
+      const name = x.getAttribute('name')
+      const isSelected = x.dataset.value === 'true'
+      updateVariable(name, !isSelected);
+    }
+    
+    function mouseover(x){
+      x.style.backgroundColor = '#2d74eb';
+    }
+    function mouseout(x){
+      const isSelected = x.dataset.value === 'true'
+      x.style.backgroundColor = isSelected ? '#2159b5' : '#123163';
+    }
+  </script>
+{% endmacro %}

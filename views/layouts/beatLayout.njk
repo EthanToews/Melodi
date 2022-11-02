@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+  {% block header %}
+    <head>
+      <meta charset="UTF-8">
+      <title>Melodi Beat Maker</title>
+    </head>
+  {% endblock %}
+  <body>
+    {% block mainbody %}
+      Default body missing
+    {% endblock %}
+    {% block footer %}
+      <p>Made by: David, Ben, and Ethan</p>
+    {% endblock %}
+  </body>
+{% set Version=1 %}
+  <script>
+    let ws = new WebSocket('ws://localhost:3000/update-entry')
+    
+    ws.onmessage = (msg) => {
+      const entrie = Object.entries(JSON.parse(msg.data));
+      const id = entrie[0][0]
+      const value = entrie[0][1]
+      const elem = document.getElementById(`${id}_setter`)
+      elem.dataset.value = value
+      elem.style.backgroundColor = value ? '#2159b5' : '#123163';
+    }
+    
+    function updateVariable(name, value) {
+      const data = { name, value };
+      ws.send(JSON.stringify(data));
+    }
+  </script>
+</html>
