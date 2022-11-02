@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='en'>
+  {% block header %}
+    <head>
+      <meta charset="UTF-8">
+      <title>Melodi Beat Maker</title>
+      <link rel="stylesheet" href="styles.css">
+    </head>
+  {% endblock %}
+  <body>
+    {% block bodyHeader %}
+      <div class="menuContainer">
+        <div class="menu">
+            <div class="logo"><strong>Melodi</strong></div>
+            <div class="links">
+                <a href="/profile_page" class="compose">Profile</a>
+                <a href="/beat-maker" class="compose">Compose</a>
+                <a href="/logout" class="logOut">Log Out</a>
+            </div>
+        </div>
+      </div>
+    {% endblock %}
+    {% block mainbody %}
+      Default body missing
+    {% endblock %}
+    {% block footer %}
+      <button onclick="getDoc()">Download Melodi</button>
+    {% endblock %}
+  </body>
+{% set Version=1 %}
+  <script>
+
+    function downloadFile(data) {
+        let jsonData = JSON.stringify(data);
+        jsonData = [jsonData];
+        const textBlob = new Blob(jsonData, { type: "text/plain;charset=utf-8" });
+ 
+        const url = window.URL;
+        link = url.createObjectURL(textBlob);
+        const a = document.createElement("a");
+        a.download = "Melodi.txt";
+        a.href = link;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    async function getDoc() {
+      console.log('Download...')
+      await fetch('/download-file')
+      .then( response => response.json())
+      .then( data => {
+        downloadFile(data)
+      })
+      .catch((err) => console.log(err))
+    }
+
+    let ws = new WebSocket('ws://localhost:8080/update-entry')
+    
+    ws.onmessage = (msg) => {
+      const entrie = Object.entries(JSON.parse(msg.data));
+      const id = entrie[0][0]
+      const value = entrie[0][1]
+      const elem = document.getElementById(`${id}_setter`)
+      elem.dataset.value = value
+      elem.style.backgroundColor = value ? '#2159b5' : '#123163';
+    }
+    
+    function updateVariable(name, value) {
+      const data = { name, value };
+      ws.send(JSON.stringify(data));
+    }
+  </script>
+</html>
