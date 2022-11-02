@@ -32,7 +32,7 @@ app.route('/profile_page')
     .get((req, res) => {
         res.sendFile("profile_page.html", {root: __dirname + "/public"});
     })
-    
+ 
 app.route("/signup")
     .get((req, res) => {
         res.sendFile("sign_Up.html", {root: __dirname + "/public"});
