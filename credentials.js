@@ -2,7 +2,7 @@ const MONGODB = {
     user: "Melodi",
     login: "Melodi1234",
     cluster: "melodi.pvzwu0d.mongodb.net",
-    db: "express"
+    db: "melodi"
 };
 
 const SESSION = {

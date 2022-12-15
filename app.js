@@ -1,8 +1,12 @@
 // npm init when ready
 const express = require("express");
 const expressWS = require('express-ws');
+const session = require("express-session");
 const nunjucks = require('nunjucks');
 const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
+const {MONGODB, SESSION} = require('./credentials');
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 //some cool startup stuff
@@ -11,15 +15,22 @@ const figlet = require('figlet')
 const app = express();
 const port = 8080;
 
-//mongodb uri, unsafe but I think prof mentioned learning about hiding this stuff later on. 
-const uri = "mongodb+srv://acs:ayEWLtGFS1ZlWOmO@express.ngknjvs.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${MONGODB.user}:${MONGODB.login}@${MONGODB.cluster}/${MONGODB.db}?retryWrites=true&w=majority`;
+
+module.exports = {
+  uri: uri,
+}
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 nunjucks.configure('views', {
     express: app,
     noCache: true
   })
-  
+  // Cookie middleware
+  app.use(session({
+    secret: SESSION.secret
+  }));
+
 //register websocket
 const ws_app = expressWS(app)
 
@@ -30,62 +41,15 @@ app.use("/", express.static(__dirname + "/public"));
 // to get the sounds
 app.use("/sounds", express.static("sounds"));
 
+const user_routes = require("./routes/user_routes.js");
+app.use("/user", user_routes);
+
 app.route('/profile_page')
     .get((req, res) => {
         res.sendFile("profile_page.html", {root: __dirname + "/public"});
     })
  
-app.route("/signup")
-    .get((req, res) => {
-        res.sendFile("sign_Up.html", {root: __dirname + "/public"});
-    })
-    .post((req, res) => {
-        const username = req.body.username.toLowerCase();
-        const password = req.body.password;
-        
-        const insertUsername = async function() {
-            const insert = await client.connect();
-            const collection =  insert.db("melodi").collection("users");
-            const insertUser = await collection.insertOne( {username: username, password: password });
-            if(insertUser['acknowledged']) {
-                res.cookie("UserCookie", req.body.username);
-                res.redirect("/login");
-            } else {
-                res.status(500);
-                res.end();
-            }
-        }
-        insertUsername();          
-    })
-// Find a way to connect to a Database
-app.route("/login")
-    .get((req, res) => {
-        res.sendFile("login.html", {root: __dirname + "/public"});
-    })
-    .post(async (req, res) => {
-        const username = req.body.username.toLowerCase();
-        
-        const findUsername = async function() {
-            const find = await client.connect();
-            const collection =  find.db("melodi").collection("users");
-            const findUser = await collection.findOne( { username: username });
-            console.log(findUser);
-            if(findUser) {
-                res.cookie("UserCookie", username);
-                const response = {status: 200, response: "Logged In!", username};
-                res.json(response);
-            } else {
-                const response = {status: 404, response: "Username not found please try again."};
-                res.json(response);
-            }
-        }
-        await findUsername();
-    });
 
-app.get("/logout", (req, res) => {
-    res.clearCookie("UserCookie");
-    res.redirect("/login");
-});
 
 async function watchDB() {
     await client.connect();
