@@ -4,7 +4,36 @@
     <head>
       <meta charset="UTF-8">
       <title>Melodi Beat Maker</title>
-      <link rel="stylesheet" href="styles.css">
+      <style>
+        .menuContainer {
+            color: #fff;
+            background-color: black;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu {
+            width: 900px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .links {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: white;
+            margin-right: 25px;
+        }
+
+        .logOut {
+            margin-left: 40px;
+        }
+      </style>
     </head>
   {% endblock %}
   <body>
@@ -25,12 +54,12 @@
     {% endblock %}
     {% block footer %}
       <button onclick="getDoc()">Download Melodi</button>
+      <button onclick="play()">Play</button>
     {% endblock %}
   </body>
 {% set Version=1 %}
   <script>
-
-    function downloadFile(data) {
+      function downloadFile(data) {
         let jsonData = JSON.stringify(data);
         jsonData = [jsonData];
         const textBlob = new Blob(jsonData, { type: "text/plain;charset=utf-8" });
@@ -43,6 +72,242 @@
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
+    }
+
+    function play() {
+      let vals = [
+        document.getElementById(`a1_setter`),
+        document.getElementById(`a2_setter`),
+        document.getElementById(`a3_setter`),
+        document.getElementById(`a4_setter`),
+        document.getElementById(`a5_setter`),
+        document.getElementById(`a6_setter`),
+        document.getElementById(`a7_setter`),
+        document.getElementById(`a8_setter`),
+
+        document.getElementById(`b1_setter`),
+        document.getElementById(`b2_setter`),
+        document.getElementById(`b3_setter`),
+        document.getElementById(`b4_setter`),
+        document.getElementById(`b5_setter`),
+        document.getElementById(`b6_setter`),
+        document.getElementById(`b7_setter`),
+        document.getElementById(`b8_setter`),
+
+        document.getElementById(`c1_setter`),
+        document.getElementById(`c2_setter`),
+        document.getElementById(`c3_setter`),
+        document.getElementById(`c4_setter`),
+        document.getElementById(`c5_setter`),
+        document.getElementById(`c6_setter`),
+        document.getElementById(`c7_setter`),
+        document.getElementById(`c8_setter`),
+
+        document.getElementById(`d1_setter`),
+        document.getElementById(`d2_setter`),
+        document.getElementById(`d3_setter`),
+        document.getElementById(`d4_setter`),
+        document.getElementById(`d5_setter`),
+        document.getElementById(`d6_setter`),
+        document.getElementById(`d7_setter`),
+        document.getElementById(`d8_setter`),
+
+        document.getElementById(`e1_setter`),
+        document.getElementById(`e2_setter`),
+        document.getElementById(`e3_setter`),
+        document.getElementById(`e4_setter`),
+        document.getElementById(`e5_setter`),
+        document.getElementById(`e6_setter`),
+        document.getElementById(`e7_setter`),
+        document.getElementById(`e8_setter`),
+
+        document.getElementById(`f1_setter`),
+        document.getElementById(`f2_setter`),
+        document.getElementById(`f3_setter`),
+        document.getElementById(`f4_setter`),
+        document.getElementById(`f5_setter`),
+        document.getElementById(`f6_setter`),
+        document.getElementById(`f7_setter`),
+        document.getElementById(`f8_setter`),
+
+        document.getElementById(`g1_setter`),
+        document.getElementById(`g2_setter`),
+        document.getElementById(`g3_setter`),
+        document.getElementById(`g4_setter`),
+        document.getElementById(`g5_setter`),
+        document.getElementById(`g6_setter`),
+        document.getElementById(`g7_setter`),
+        document.getElementById(`g8_setter`),
+
+        document.getElementById(`h1_setter`),
+        document.getElementById(`h2_setter`),
+        document.getElementById(`h3_setter`),
+        document.getElementById(`h4_setter`),
+        document.getElementById(`h5_setter`),
+        document.getElementById(`h6_setter`),
+        document.getElementById(`h7_setter`),
+        document.getElementById(`h8_setter`),
+      ]
+
+      if (vals[0].dataset.value == "true" ||
+          vals[1].dataset.value == "true" ||
+          vals[2].dataset.value == "true" ||
+          vals[3].dataset.value == "true" ||
+          vals[4].dataset.value == "true" ||
+          vals[5].dataset.value == "true" ||
+          vals[6].dataset.value == "true" ||
+          vals[7].dataset.value == "true"
+        ) {
+          const ballet = new Audio('/sounds/drum1_ballet_a.mp3');
+          
+          ballet.addEventListener("canplaythrough", function() {
+            ballet.play();
+          })
+          ballet.addEventListener("ended", function() {
+            ballet.play();
+          })
+          console.log("Ballets are on");
+      }
+
+      if (vals[8].dataset.value == "true" ||
+          vals[9].dataset.value == "true" ||
+          vals[10].dataset.value == "true" ||
+          vals[11].dataset.value == "true" ||
+          vals[12].dataset.value == "true" ||
+          vals[13].dataset.value == "true" ||
+          vals[14].dataset.value == "true" ||
+          vals[15].dataset.value == "true"
+        ) {
+          const kick = new Audio('/sounds/drum2_kick_a.mp3');
+
+          kick.addEventListener("canplaythrough", function() {
+            kick.play()
+          })
+          kick.addEventListener("ended", function() {
+            kick.play();
+          })      
+          console.log("Kicks are on");
+      }
+
+      if (vals[16].dataset.value == "true" ||
+          vals[17].dataset.value == "true" ||
+          vals[18].dataset.value == "true" ||
+          vals[19].dataset.value == "true" ||
+          vals[20].dataset.value == "true" ||
+          vals[21].dataset.value == "true" ||
+          vals[22].dataset.value == "true" ||
+          vals[23].dataset.value == "true"
+        ) {
+          const snare = new Audio('/sounds/drum3_snare_a.mp3');
+          
+          snare.addEventListener("canplaythrough", function() {
+            snare.play();
+          })
+          snare.addEventListener("ended", function() {
+            snare.play();
+          })
+          console.log("Snares are on");
+      }
+
+      if (vals[24].dataset.value == "true" ||
+          vals[25].dataset.value == "true" ||
+          vals[26].dataset.value == "true" ||
+          vals[27].dataset.value == "true" ||
+          vals[28].dataset.value == "true" ||
+          vals[29].dataset.value == "true" ||
+          vals[30].dataset.value == "true" ||
+          vals[31].dataset.value == "true"
+        ) {
+          const lead = new Audio('/sounds/drum4_lead_a.mp3');
+          
+          lead.addEventListener("canplaythrough", function() {
+            lead.play();
+          })
+          lead.addEventListener("ended", function() {
+            lead.play();
+          })
+          console.log("Lead is on");
+      }
+
+      if (vals[32].dataset.value == "true" ||
+          vals[33].dataset.value == "true" ||
+          vals[34].dataset.value == "true" ||
+          vals[35].dataset.value == "true" ||
+          vals[36].dataset.value == "true" ||
+          vals[37].dataset.value == "true" ||
+          vals[38].dataset.value == "true" ||
+          vals[39].dataset.value == "true"
+        ) {
+          const charley = new Audio('/sounds/drum5_charley_a.mp3');
+          
+          charley.addEventListener("canplaythrough", function() {
+            charley.play();
+          })
+          charley.addEventListener("ended", function() {
+            charley.play();
+          })
+          console.log("Charleys are on");
+      }
+
+      if (vals[40].dataset.value == "true" ||
+          vals[41].dataset.value == "true" ||
+          vals[42].dataset.value == "true" ||
+          vals[43].dataset.value == "true" ||
+          vals[44].dataset.value == "true" ||
+          vals[45].dataset.value == "true" ||
+          vals[46].dataset.value == "true" ||
+          vals[47].dataset.value == "true"
+        ) {
+          const daft = new Audio('/sounds/effet4_daft2_a.mp3');
+          
+          daft.addEventListener("canplaythrough", function() {
+            daft.play();
+          })
+          daft.addEventListener("ended", function() {
+            daft.play();
+          })
+          console.log("Dafts are on");
+      }
+
+      if (vals[48].dataset.value == "true" ||
+          vals[49].dataset.value == "true" ||
+          vals[50].dataset.value == "true" ||
+          vals[51].dataset.value == "true" ||
+          vals[52].dataset.value == "true" ||
+          vals[53].dataset.value == "true" ||
+          vals[54].dataset.value == "true" ||
+          vals[55].dataset.value == "true"
+        ) {
+          const rythme = new Audio('/sounds/effet5_rythme_b.mp3');
+          
+          rythme.addEventListener("canplaythrough", function() {
+            rythme.play();
+          })
+          rythme.addEventListener("ended", function() {
+            rythme.play();
+          })
+          console.log("Rythmes are on");
+      }
+
+      if (vals[56].dataset.value == "true" ||
+          vals[57].dataset.value == "true" ||
+          vals[58].dataset.value == "true" ||
+          vals[59].dataset.value == "true" ||
+          vals[60].dataset.value == "true" ||
+          vals[61].dataset.value == "true" ||
+          vals[62].dataset.value == "true" ||
+          vals[63].dataset.value == "true"
+        ) {
+          const melo = new Audio('/sounds/melo4_clav_a.mp3');
+          
+          melo.addEventListener("canplaythrough", function() {
+            melo.play();
+          })
+          melo.addEventListener("ended", function() {
+            melo.play();
+          })
+          console.log("Hs are on");
+      }      
     }
 
     async function getDoc() {
@@ -61,7 +326,7 @@
       const entrie = Object.entries(JSON.parse(msg.data));
       const id = entrie[0][0]
       const value = entrie[0][1]
-      const elem = document.getElementById(`${id}_setter`)
+      const elem = document.getElementById(`${id}_setter`);
       elem.dataset.value = value
       elem.style.backgroundColor = value ? '#2159b5' : '#123163';
     }

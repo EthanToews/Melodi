@@ -1,7 +1,7 @@
 // npm init when ready
 const express = require("express");
-const expressWS = require('express-ws')
-const nunjucks = require('nunjucks')
+const expressWS = require('express-ws');
+const nunjucks = require('nunjucks');
 const cookieParser = require("cookie-parser");
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
@@ -27,6 +27,8 @@ app.use(express.urlencoded({extended:true}));
 app.use( express.json() );
 app.use(cookieParser("My secret"));
 app.use("/", express.static(__dirname + "/public"));
+// to get the sounds
+app.use("/sounds", express.static("sounds"));
 
 app.route('/profile_page')
     .get((req, res) => {
