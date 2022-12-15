@@ -4,16 +4,16 @@
 {% block mainbody %}
   <div style="display: table; border-spacing: 10px;">
     <div style="display: table-cell;">
-      {% for row in gridValues[0] %}
+      {% for row in gridValues[1] %}
         <div style="display: table; border-spacing: 2px;">
-            {{ reactivity.musicRow(row.name) }}
+            {{ reactivity.musicRow(row.entries[0].name) }}
         </div>
       {% endfor %}
     </div>
     <div style="display: table-cell;">
       {% for row in gridValues %}
         <div style="display: table; border-spacing: 2px; background-color: #050b14;">
-          {% for entry in row %}
+          {% for entry in row.entries %}
             {{ reactivity.entrySelect(entry.name, entry.value) }}
           {% endfor %}  
         </div>

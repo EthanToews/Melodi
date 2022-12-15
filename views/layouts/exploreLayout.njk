@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+  {% block header %}
+    <head>
+      <meta charset="UTF-8">
+      <title>Melodi Beat Maker</title>
+      <style>
+        body {
+          margin: 0px;
+        }
+
+        .menuContainer {
+            color: #fff;
+            background-color: black;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu {
+            width: 900px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .links {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: white;
+            margin-right: 25px;
+        }
+
+        .logOut {
+            margin-left: 40px;
+        }
+      </style>
+    </head>
+  {% endblock %}
+  <body>
+    {% block bodyHeader %}
+      <div class="menuContainer">
+        <div class="menu">
+            <div class="logo"><strong>Melodi</strong></div>
+            <div class="links">
+                <a href="/explore" class="compose">Explore</a>
+                <a href="/beat-maker" class="compose">Compose</a>
+                <a href="/profile_page" class="compose">Profile</a>
+                <a href="/logout" class="logOut">Log Out</a>
+            </div>
+        </div>
+      </div>
+    {% endblock %}
+    {% block mainbody %}
+      Default body missing
+    {% endblock %}
+  </body>
+{% set Version=1 %}
+  <script>
+
+  </script>
+</html>

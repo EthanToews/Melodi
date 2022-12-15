@@ -7,7 +7,6 @@
   </span>
 {% endmacro %}
 
-
 {% macro entrySelect(name, value) %}
   <div
     class="beat"
@@ -36,4 +35,13 @@
       x.style.backgroundColor = isSelected ? '#2159b5' : '#123163';
     }
   </script>
+{% endmacro %}
+
+{% macro songDisplay(name) %}
+  <span 
+    class="{{ name }}"
+    style="width: 60px; height: 60px; border-radius: 5px;"
+  >
+    Title: {{ name }}
+  </span>
 {% endmacro %}

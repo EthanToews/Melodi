@@ -1,0 +1,13 @@
+{% extends "layouts/exploreLayout.njk" %}
+{% import "macro/rowVar.njk" as reactivity %}
+
+{% block mainbody %}
+    <div style="display: table-cell;">
+      {% for song in melodis %}
+        <div style="display: block; border-spacing: 2px;">
+          {{ reactivity.songDisplay(song.title) }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
